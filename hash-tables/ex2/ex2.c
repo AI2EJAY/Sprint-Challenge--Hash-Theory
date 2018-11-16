@@ -18,10 +18,14 @@ char **reconstruct_trip(Ticket **tickets, int length)
     for(int i = 1; i < length; i++) {
     int start = 0;
     route[i] = hash_table_retrieve(hash, route[start]);
+    if (strcmp(route[i], "NONE")) {
+      break;
+    }
     start += 1;
+
     }
     
-
+  printf("%s\n", route);
   return route;
 }
 
