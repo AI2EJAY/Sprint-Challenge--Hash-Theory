@@ -9,7 +9,11 @@ char **reconstruct_trip(Ticket **tickets, int length)
   HashTable *hash = create_hash_table(16);
   char **route = malloc(length * sizeof(char *));
 
-  // YOUR CODE HERE
+  for (int i = 0; i < length; i++) {
+    if (strcmp(tickets[i]->source == "NONE")) { //Find first two routes
+      route[0] = tickets[i]->destination;
+    }
+  }
 
   return route;
 }
