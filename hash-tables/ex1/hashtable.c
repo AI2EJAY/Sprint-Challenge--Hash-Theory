@@ -3,7 +3,7 @@
 #include <string.h>
 #include "hashtable.h"
 
-LinkedPair *create_pair(int key, int value)
+LinkedPair *create_pair(int key, struct Answer* value)
 {
   LinkedPair *pair = malloc(sizeof(LinkedPair));
   pair->key = key;
@@ -35,7 +35,7 @@ HashTable *create_hash_table(int capacity)
   return ht;
 }
 
-void hash_table_insert(HashTable *ht, int key, int value)
+void hash_table_insert(HashTable *ht, int key, struct Answer* value)
 {
   unsigned int index = hash(key, ht->capacity);
 

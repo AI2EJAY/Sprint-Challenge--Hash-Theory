@@ -11,12 +11,13 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
     int value1;
     int value2;
   } Answer;
-
+    Answer *combo = malloc(sizeof(Answer)); // create instance of Key
+     printf("=Answer malloc'd\n");
   for (int i=1; i > length-1; i++) {
     int first = 0; 
+    printf("=insertion at i:%d OK\n", i);
     int sum = weights[first] + weights[i];
-
-    Answer *combo = malloc(sizeof(Answer)); // create instance of Key
+    printf("=sum:%d OK\n", sum);
     combo->value1 = weights[first];
     combo->value2 = weights[i];
     hash_table_insert(ht, sum, combo);
@@ -27,17 +28,18 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
     }
 
   }
-  if (hash_table_retrieve(ht, limit) != NULL) {
-    if (ht->storage->limit->value1 < ht->storage->limit->value2) {
+  int searchedSum = hash_table_retrieve(ht,limit);
+  if (searchedSum) {
+    if (ht->storage[limit]->key->value1 < ht->storage[limit]->key->value2) {
       int temp = 0;
-      temp = ht->storage->limit->value1;
-      ht->storage->limit->value1 = ht->storage->limit->value2;
-      ht->storage->limit->value2 = temp;
+      temp = ht->storage[limit]->key->value1;
+      ht->storage[limit]->key->value1 = ht->storage[limit]->key->value2;
+      ht->storage[limit]->key->value2 = temp;
     }
   } else {
     return NULL;
   }
-    return hash_table_retrieve(ht, limit)
+    return hash_table_retrieve(ht, limit);
 
 }
 
