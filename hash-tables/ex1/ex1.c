@@ -7,7 +7,7 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
 {
   HashTable *ht = create_hash_table(16);
   // YOUR CODE HERE
-  Answer *sum;
+  Answer *sum = malloc(sizeof(Answer));
   for (int i = 0; i < length; i++)
   {
     hash_table_insert(ht, weights[i], i);
@@ -15,12 +15,12 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
   }
   for (int i = 0; i < length; i++)
   {
-    printf("last loop at %d\n", i);
+    // printf("last loop at %d\n", i);
     int weight2 = hash_table_retrieve(ht, limit - weights[i]);
     if (weight2 != -1)
     {
-    printf("index of first %d, index of second %d\n", i, weight2);
-      if (weights[i] < weights[weight2])
+    // printf("index of first %d, index of second %d\n", i, weight2);
+      if (weights[i] <= weights[weight2])
       {
         sum->index_1 = weight2;
         sum->index_2 = i;
@@ -28,14 +28,14 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
       }
       else
       {
-      printf("index of first %d, index of second %d\n", i, weight2);
+      // printf("index of first %d, index of second %d\n", i, weight2);
         sum->index_1 = i;
         sum->index_2 = weight2;
         return sum;
       }
     }
-    return sum;
   }
+    return NULL;
 }
 
 // {
