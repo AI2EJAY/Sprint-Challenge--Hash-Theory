@@ -20,7 +20,7 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
     if (weight2 != -1)
     {
     // printf("index of first %d, index of second %d\n", i, weight2);
-      if (weights[i] <= weights[weight2])
+      if (i <= weight2)
       {
         sum->index_1 = weight2;
         sum->index_2 = i;
